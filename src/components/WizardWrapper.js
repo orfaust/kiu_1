@@ -9,6 +9,7 @@ export default function WizardWrapper(props) {
         margin: "0 auto",
         backgroundImage: "url('/assets/sfondo.png')",
         height: "100vh",
+        width: "100vw",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover"
       }}

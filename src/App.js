@@ -28,29 +28,42 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <div className="App">
-          <Route
+          <AnimatedRoute
             exact
             path="/"
             component={Splash}
-            atEnter={{ offset: -100 }}
-            atLeave={{ offset: 0 }}
-            atActive={{ offset: 0 }}
+            atEnter={{ offset: 100 }}
+            atLeave={{ offset: 100 }}
+            atActive={{ offset: 0, position: "absolute", zIndex: 0 }}
             mapStyles={(styles) => ({
-              transform: `translateX(${styles.offset}%)`
+              //transform: `translate3d(1000,0,-100); position:fixed; zIndex:0`
             })}
+            className="splash"
           />
-          <Route
+          <AnimatedRoute
             exact
             path="/language"
             component={LanguageSelector}
+            atEnter={{ offset: 100, position: "fixed" }}
+            atLeave={{ offset: 100 }}
+            atActive={{ offset: 0 }}
+            mapStyles={(styles) => ({
+              transform: `translateY(${styles.offset}%)`
+            })}
+            className="language"
+          />
+          <AnimatedRoute
+            exact
+            path="/guide"
+            component={GuideSelector}
             atEnter={{ offset: -100 }}
             atLeave={{ offset: 0 }}
             atActive={{ offset: 0 }}
             mapStyles={(styles) => ({
-              transform: `translateX(${styles.offset}%)`
+              transform: `translateY(${styles.offset}%)`
             })}
+            className="guide"
           />
-          <Route exact path="/guide" component={GuideSelector} />
           <Route exact path="/start" component={Start} />
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/opener" component={Opener} />
