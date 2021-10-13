@@ -11,9 +11,18 @@ const ScreenHeader = styled(({ text, className }) => {
     </div>
   );
 })`
-  display: flex;
+  font-family: "Baloo 2";
+  font-weight: 700;
+  position: relative;
+  padding: 2em;
+  font-size: 2em;
+
   & .text {
     color: #265a32;
+  }
+  & .back {
+    position: absolute;
+    left: 0;
   }
 `;
 
