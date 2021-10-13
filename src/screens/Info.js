@@ -1,18 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-function ScreenHeader({ children }) {
+const ScreenHeader = styled(({ text, className }) => {
   return (
-    <div className="screen-header">
-      <h1>{children}</h1>
+    <div className={className}>
+      <span className="back">
+        <i className="fas fa-chevron-left" />
+      </span>
+      <span className="text">{text}</span>
     </div>
   );
-}
+})`
+  display: flex;
+  & .text {
+    color: #265a32;
+  }
+`;
 
 export default function Info() {
   return (
     <div>
-      <ScreenHeader>Informazioni utili</ScreenHeader>
+      <ScreenHeader text="Informazioni utili" />
     </div>
   );
 }
