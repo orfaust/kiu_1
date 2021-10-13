@@ -10,6 +10,7 @@ export default function Menu() {
         caption="via"
         icon="fa fa-trash"
       />
+
       <MenuButton
         to="opener/chatta"
         title="chatta"
