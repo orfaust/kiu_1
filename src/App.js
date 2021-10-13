@@ -1,6 +1,8 @@
 import "./styles.css";
+import { useState, React } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { AnimatedRoute } from "react-router-transition";
+import { ConfigContext } from "./contexts/ConfigContext";
 
 import {
   useQuery,
@@ -24,71 +26,76 @@ import VideoPlayer from "./screens/VideoPlayer";
 const queryClient = new QueryClient();
 
 export default function App() {
+  const [language, setLanguage] = useState("");
+  const [guide, setGuide] = useState("");
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="App">
-          <AnimatedRoute
-            exact
-            path="/"
-            component={Splash}
-            atEnter={{ offset: 100 }}
-            atLeave={{ offset: 100 }}
-            atActive={{ offset: 0, position: "absolute", zIndex: 0 }}
-            mapStyles={(styles) => ({
-              //transform: `translate3d(1000,0,-100); position:fixed; zIndex:0`
-            })}
-            className="splash"
-          />
-          <AnimatedRoute
-            exact
-            path="/language"
-            component={LanguageSelector}
-            atEnter={{ offset: 100, position: "fixed" }}
-            atLeave={{ offset: 100 }}
-            atActive={{ offset: 0 }}
-            mapStyles={(styles) => ({
-              transform: `translateY(${styles.offset}%)`
-            })}
-            className="language"
-          />
-          <AnimatedRoute
-            exact
-            path="/guide"
-            component={GuideSelector}
-            atEnter={{ offset: -100 }}
-            atLeave={{ offset: 0 }}
-            atActive={{ offset: 0 }}
-            mapStyles={(styles) => ({
-              transform: `translateY(${styles.offset}%)`
-            })}
-            className="guide"
-          />
-          <Route exact path="/start" component={Start} />
-          <Route exact path="/menu" component={Menu} />
-          <Route exact path="/opener" component={Opener} />
-          <Route exact path="/info" component={Info} />
-          <Route exact path="/services" component={Services} />
-          <Route exact path="/video" component={VideoPlayer} />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            //position: "fixed",
-            flexDirection: "column"
-          }}
-        >
-          <Link to="/">spalsh</Link>
-          <Link to="/language">language</Link>
-          <Link to="/guide">guide</Link>
-          <Link to="/start">start</Link>
-          <Link to="/menu">menu</Link>
-          <Link to="/opener">opener</Link>
-          <Link to="/info">info</Link>
-          <Link to="/services">services</Link>
-          <Link to="/video">video</Link>
-        </div>
-      </Router>
-    </QueryClientProvider>
+    <ConfigContext.Provider value={{ language, setLanguage, guide, setGuide }}>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <div className="App">
+            <AnimatedRoute
+              exact
+              path="/"
+              component={Splash}
+              atEnter={{ offset: 100 }}
+              atLeave={{ offset: 100 }}
+              atActive={{ offset: 0, position: "absolute", zIndex: 0 }}
+              mapStyles={(styles) => ({
+                //transform: `translate3d(1000,0,-100); position:fixed; zIndex:0`
+              })}
+              className="splash"
+            />
+            <AnimatedRoute
+              exact
+              path="/language"
+              component={LanguageSelector}
+              atEnter={{ offset: 100, position: "fixed" }}
+              atLeave={{ offset: 100 }}
+              atActive={{ offset: 0 }}
+              mapStyles={(styles) => ({
+                transform: `translateY(${styles.offset}%)`
+              })}
+              className="language"
+            />
+            <AnimatedRoute
+              exact
+              path="/guide"
+              component={GuideSelector}
+              atEnter={{ offset: -100 }}
+              atLeave={{ offset: 0 }}
+              atActive={{ offset: 0 }}
+              mapStyles={(styles) => ({
+                transform: `translateY(${styles.offset}%)`
+              })}
+              className="guide"
+            />
+            <Route exact path="/start" component={Start} />
+            <Route exact path="/menu" component={Menu} />
+            <Route exact path="/opener" component={Opener} />
+            <Route exact path="/info" component={Info} />
+            <Route exact path="/services" component={Services} />
+            <Route exact path="/video" component={VideoPlayer} />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              //position: "fixed",
+              flexDirection: "column"
+            }}
+          >
+            <Link to="/">spalsh</Link>
+            <Link to="/language">language</Link>
+            <Link to="/guide">guide</Link>
+            <Link to="/start">start</Link>
+            <Link to="/menu">menu</Link>
+            <Link to="/opener">opener</Link>
+            <Link to="/info">info</Link>
+            <Link to="/services">services</Link>
+            <Link to="/video">video</Link>
+          </div>
+        </Router>
+      </QueryClientProvider>
+    </ConfigContext.Provider>
   );
 }

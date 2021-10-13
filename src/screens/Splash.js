@@ -1,9 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useContext } from "react";
+import WizardButton from "../components/WizardButton";
 
 import WizardWrapper from "../components/WizardWrapper";
+import { ConfigContext } from "../contexts/ConfigContext";
 
 export default function Splash() {
+  const { language, guide } = useContext(ConfigContext);
+
   return (
     <WizardWrapper logoTop="40%">
       <>
@@ -15,7 +18,10 @@ export default function Splash() {
             textAlign: "center"
           }}
         >
-          <Link to="/language">language</Link>
+          <h1>{language}</h1>
+          <h1>{guide}</h1>
+
+          <WizardButton to="/language" text="AUANTI" />
         </div>
       </>
     </WizardWrapper>
