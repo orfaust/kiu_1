@@ -75,6 +75,7 @@ export default function App() {
             <Route exact path="/opener" component={Opener} />
             <Route exact path="/info" component={Info} />
             <Route exact path="/services" component={Services} />
+
             <Route exact path="/video" component={VideoPlayer} />
           </div>
           <div
